@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>Xby2WebsiteAPI</AssemblyName>
     <RootNamespace>Xby2WebsiteAPI</RootNamespace>
+    <Configurations>Debug;Release;Staging</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
