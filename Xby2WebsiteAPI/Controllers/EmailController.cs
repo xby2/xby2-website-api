@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -42,10 +43,13 @@ namespace xby2_website_api.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                var byteArray = Encoding.ASCII.GetBytes(string.Format("{0}:{1}", username, password));
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+                var authorizationString = string.Format("{0}:{1}", username, password);
+                var byteArray = Encoding.ASCII.GetBytes(authorizationString);
+                client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
 
-                MailjetMessage mailjetMessage = MailjetMessage.FromXby2Message(email, fromEmail, toEmail, subject);
+                MailjetMessage mailjetMessage =
+                    MailjetMessage.FromXby2Message(email, fromEmail, toEmail, subject);
                 MailjetRequest request = new MailjetRequest(mailjetMessage);
                 var requestJson = request.ToJson();
 
