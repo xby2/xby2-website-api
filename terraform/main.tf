@@ -23,4 +23,9 @@ resource "azurerm_app_service" "xby2_website_api_uat_asp" {
   location            = "${azurerm_resource_group.xby2_website_uat_rg.location}"
   resource_group_name = "${azurerm_resource_group.xby2_website_uat_rg.name}"
   app_service_plan_id = "${azurerm_app_service_plan.xby2_website_uat_asp.id}"
+
+  app_settings {
+    "XBY2_WEBSITE_API_MAILJET_USERNAME" = ""
+    "XBY2_WEBSITE_API_MAILJET_PASSWORD" = ""
+  }
 }
